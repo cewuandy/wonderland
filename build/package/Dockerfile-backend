@@ -1,0 +1,14 @@
+FROM golang:1.22
+
+WORKDIR /
+
+COPY . .
+
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /wonderland -x cmd/main.go
+
+FROM alpine:3.20
+
+COPY --from=0 /wonderland /usr/bin
+COPY assets /assets
+
+ENTRYPOINT ["sh", "-c", "wonderland"]
