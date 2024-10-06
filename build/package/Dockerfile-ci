@@ -2,6 +2,6 @@ FROM alpine:3.20
 
 ARG BINARY
 
-COPY /${BINARY} /usr/local/bin
+COPY ${BINARY} /usr/local/bin
 
 ENTRYPOINT ["sh", "-c", "${BINARY}"]
