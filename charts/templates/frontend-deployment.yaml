@@ -27,7 +27,7 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "cewuandy/wonderland-frontend:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "cewuandy/wonderland-frontend:latest-arm64"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
