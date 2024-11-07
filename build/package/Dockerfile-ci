@@ -6,4 +6,6 @@ WORKDIR /
 COPY assets /assets
 COPY ${BINARY} /usr/local/bin
 
+RUN apk add libc6-compat
+
 ENTRYPOINT ["sh", "-c", "${BINARY}"]
