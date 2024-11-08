@@ -80,11 +80,7 @@ func (m *materialUseCase) getProductionLevel(ctx context.Context,
 		totalTime      float32
 	)
 
-	{
-		material, _ := m.materialMap[req.Name]
-		totalTime += material.Time * float32(req.Quantity)
-		countResult[req.Name] = float32(req.Quantity)
-	}
+	countResult[req.Name] = float32(req.Quantity)
 
 	for k, v := range countResult {
 		level := m.getLevel(k, 0, 0)
@@ -119,6 +115,7 @@ func (m *materialUseCase) getProductionLevel(ctx context.Context,
 		}
 		result = fmt.Sprintf("\nLevel: %d (%.1fm)\n", i, levelTotalTime) + result
 		totalTime += levelTotalTime
+		fmt.Printf("time: %f\n", levelTotalTime)
 	}
 
 	result += "\n"
